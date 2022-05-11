@@ -1,50 +1,134 @@
-import { Strategy, ZkIdentity } from "@zk-kit/identity"
-import { generateMerkleProof, Semaphore } from "@zk-kit/protocols"
-import { expect } from "chai"
-import { Contract, Signer } from "ethers"
-import { ethers, run } from "hardhat"
-import identityCommitments from "../public/identityCommitments.json"
+// import { Strategy, ZkIdentity } from "@zk-kit/identity";
+// import { generateMerkleProof, Semaphore } from "@zk-kit/protocols";
+// import { expect } from "chai";
+import { Strategy, ZkIdentity } from "@zk-kit/identity";
+import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
+import { generateMerkleProof, Semaphore } from "@zk-kit/protocols";
+import { poseidon } from "circomlibjs";
+import {
+  Contract,
+  providers,
+  utils,
+  //  Signer
+} from "ethers";
+import { run } from "hardhat";
+import { parseIdArr, formatId } from "../utils/convertId";
+// import identityCommitments from "../public/identityCommitments.json";
+import path from "path"
 
-describe("Greeters", function () {
-    let contract: Contract
-    let contractOwner: Signer
 
-    before(async () => {
-        contract = await run("deploy", { logs: false })
+describe("VotersDemo", function () {
+  let contract: Contract;
+  //   let contractOwner: Signer;
+  const zkeyFiles = "./public"
+  const wasmFilePath = path.join(zkeyFiles, "semaphore.wasm")
+  const finalZkeyPath = path.join(zkeyFiles, "semaphore_final.zkey")
 
-        const signers = await ethers.getSigners()
-        contractOwner = signers[0]
-    })
+  before(async () => {
+    contract = await run("deploy", { logs: false });
 
-    describe("# greet", () => {
-        const wasmFilePath = "./public/semaphore.wasm"
-        const finalZkeyPath = "./public/semaphore_final.zkey"
+    // const signers = await ethers.getSigners();
+    // contractOwner = signers[0];
+  });
 
-        it("Should greet", async () => {
-            const message = await contractOwner.signMessage("Sign this message to create your identity!")
+  describe("# getRatingAllExpensive", () => {
+    it("Should return an array", async () => {
+      const res = await contract.getRatingAllExpensive(0);
+      console.log(res);
+    });
+  });
 
-            const identity = new ZkIdentity(Strategy.MESSAGE, message)
-            const identityCommitment = identity.genIdentityCommitment()
-            const greeting = "Hello world"
-            const bytes32Greeting = ethers.utils.formatBytes32String(greeting)
+  describe("# getProposalsAllExpensive before", () => {
+    it("Should return an array", async () => {
+      const res = await contract.getProposalsAllExpensive(1);
+      console.log(res);
+    });
+  });
 
-            const merkleProof = generateMerkleProof(20, BigInt(0), identityCommitments, identityCommitment)
-            const witness = Semaphore.genWitness(
-                identity.getTrapdoor(),
-                identity.getNullifier(),
-                merkleProof,
-                merkleProof.root,
-                greeting
-            )
+  describe.only("#vote", () => {
+    it("Should vote on proposal", async () => {
+      const choice = [
+        "0",
+        "0x7a6b47616d657300000000000000000000000000000000000000000000000000",
+      ];
+      const userId = "896030624375250984";
+      const identity = new ZkIdentity(Strategy.MESSAGE, userId);
+      const identityCommitment = identity.genIdentityCommitment();
+      console.log("identityCommitment", identityCommitment.toString());
 
-            const fullProof = await Semaphore.genProof(witness, wasmFilePath, finalZkeyPath)
-            const solidityProof = Semaphore.packToSolidityProof(fullProof.proof)
+        const provider = new providers.JsonRpcProvider();
+        const signer = provider.getSigner();
+        console.log("identityCommitment", identityCommitment.toString());
+        let leavesBytes32 = await contract.getLeaves();
+        let identityCommitments = parseIdArr(leavesBytes32);
+        console.log("identityCommitments", identityCommitments);
+        const leavesBool = identityCommitments.map(
+          (leaf: string) => identityCommitment.toString() === leaf
+        );
+        if (!leavesBool.includes(true)) {
+          
+          const identityArr = formatId(identityCommitment);
+          
+          let tx = await contract.addLeaf(identityArr);
+          let receipt = await tx.wait();
+          console.log("receipt is", receipt);
+          leavesBytes32 = await contract.getLeaves();
+          identityCommitments = parseIdArr(leavesBytes32);
+          const tree = new IncrementalMerkleTree(poseidon, 20, BigInt(0), 2);
+    
+        for (const identityCommitment of identityCommitments) {
+          tree.insert(identityCommitment.toString());
+        }
+        }
 
-            const nullifierHash = Semaphore.genNullifierHash(merkleProof.root, identity.getNullifier())
 
-            const transaction = contract.greet(bytes32Greeting, nullifierHash, solidityProof)
+      const merkleProof = generateMerkleProof(
+        20,
+        BigInt(0),
+        identityCommitments,
+        identityCommitment.toString()
+      );
+      const vote = choice[1];
+      const shortenedVote = choice[1].slice(0, -50);
+      const witness = Semaphore.genWitness(
+        identity.getTrapdoor(),
+        identity.getNullifier(),
+        merkleProof,
+        merkleProof.root,
+        shortenedVote
+      );
+      const root = merkleProof.root.toString();
+      const { proof, publicSignals } = await Semaphore.genProof(
+        witness,
+        wasmFilePath,
+        finalZkeyPath
+      );
+      const solidityProof = Semaphore.packToSolidityProof(proof);
+      const strIdentityCommitment = identityCommitment.toString();
 
-            await expect(transaction).to.emit(contract, "NewGreeting").withArgs(bytes32Greeting)
-        })
-    })
-})
+      const nullifierHash = publicSignals.nullifierHash;
+      const res = await contract.vote(
+        1,
+        vote,
+        utils.formatBytes32String(shortenedVote),
+        BigInt(root),
+        nullifierHash,
+        solidityProof
+      );
+
+      // console.log(res);
+    });
+
+
+      it("Should return user rating", async () => {
+        const res = await contract.getProposalsAllExpensive(1);
+        console.log(res);
+      });
+
+    //   it("Should raise rating", async () => {
+    //     const res = await contract.getProposalsAllExpensive(1);
+    //     console.log(res);
+    
+    // });
+  });
+});

@@ -60,7 +60,6 @@ build
 dist
 
 # Hardhat
-artifacts
 cache
 
 # Docusaurus cache and generated files
@@ -76,3 +75,8 @@ cache
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+__*/
+__*
+backups/
+venv

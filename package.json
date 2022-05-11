@@ -1,5 +1,5 @@
 {
-    "name": "semaphore-boilerplate",
+    "name": "ZKU-Vote",
     "version": "1.0.0",
     "description": "A simple Next.js/Hardhat privacy application with Semaphore.",
     "license": "MIT",
@@ -10,20 +10,33 @@
         "hardhat:node": "hardhat node",
         "compile": "hardhat compile",
         "deploy": "hardhat deploy",
+        "deploy-r": "hardhat deploy --network rinkeby",
+        "deploy-m": "hardhat deploy --network mainnet",
+        "cdl": "hardhat compile && hardhat deploy --network localhost",
         "test": "hardhat test",
         "report-gas": "REPORT_GAS=true hardhat test",
         "start": "next start",
+        "start:node": "npm-run-all -p start hardhat:node",
         "build": "next build",
         "lint": "next lint"
     },
     "dependencies": {
+        "@babel/core": "^7.0.0",
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
         "@metamask/detect-provider": "^1.2.0",
+        "@mui/icons-material": "^5.6.2",
+        "@mui/material": "^5.6.3",
         "@zk-kit/identity": "^1.4.1",
         "@zk-kit/protocols": "^1.11.0",
         "assert": "^2.0.0",
         "next": "12.0.10",
         "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react-dom": "17.0.2",
+        "cookie": "^0.4.1",
+        "ethers": "^5.5.3",
+        "jsonwebtoken": "^8.5.1",
+        "node-fetch": "^2.6.1"
     },
     "devDependencies": {
         "@appliedzkp/semaphore-contracts": "^0.8.0",
@@ -41,12 +54,14 @@
         "eslint": "8.8.0",
         "eslint-config-next": "12.0.10",
         "ethereum-waffle": "^3.4.0",
-        "ethers": "^5.5.3",
         "hardhat": "^2.8.3",
         "hardhat-dependency-compiler": "^1.1.2",
         "hardhat-gas-reporter": "^1.0.7",
         "npm-run-all": "^4.1.5",
         "ts-node": "^10.4.0",
-        "typescript": "4.5.5"
+        "typescript": "4.5.5",
+        "@types/node-fetch": "^2.5.10",
+        "@types/cookie": "^0.4.0",
+        "@types/jsonwebtoken": "^8.5.1"
     }
 }

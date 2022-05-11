@@ -1,0 +1,140 @@
+[
+  {
+    "info": "zkGames is a platform that allows users to play zk (zero knowledge) games and mint an NFT as proof that they have won.",
+    "source_code": "SourceCode: https://github.com/vplasencia/zkGames",
+    "website": "https://zkgames.vercel.app/",
+    "demo": " https://youtu.be/EpeK3WzmS8Y",
+    "discord": "Vivian Plasencia#2192"
+  },
+  {
+    "info": "Anonymous smart contract deployment protocol.",
+    "source_code": "https://github.com/alienflip/degenDeploy",
+    "demo": " https://www.youtube.com/watch?v=12kp4Ju2sRQ&ab_channel=yeetbuck",
+    "discord": "AlienFlip#4924"
+  },
+  {
+    "info": "zkAsk allows a host to create AMA sessions where the audience can ask and vote on questions anonymously.",
+    "source_code": "Source Code: https://github.com/violetwee/zkAsk",
+    "website": "https://testnet.zkask.one/",
+    "demo": " https://www.youtube.com/watch?v=LbdWAydgKjQ",
+    "discord": "M0rtal#8277"
+  },
+  {
+    "info": "zkWitches is a multiplayer social deduction game played on-chain using ZK proof technology.",
+    "source_code": "https://github.com/ThanksSkeleton/zkwitches_backend",
+    "source_code1": "https://github.com/ThanksSkeleton/zkwitches",
+    "discord": "ThanksSkeleton#9425"
+  },
+  {
+    "info": "Take anonymous NPS surveys.",
+    "source_code": "Source Code: https://github.com/neha-nupoor/zk-survey",
+    "website": "https://zksurvey-frontend.vercel.app/",
+    "demo": "https://drive.google.com/file/d/1fntFbQ9EIIYfinf_S_JFIhXlh8VHcm9a/view?usp=sharing",
+    "discord": "nehan#9885"
+  },
+  {
+    "info": "An online zk-signatures verifier for large arrays of signature (purpose is gas savings between 70% and 90%)",
+    "Source Code": "https://github.com/Eikix/zkuniversity/tree/main/final_project/zk-signature-verifier",
+    "discord": "Eikii "
+  },
+  {
+    "info": "Solve and create new sujikos.",
+    "source_code": "Source Code: https://github.com/carloseam94/zksujiko",
+    "website": "https://zksujiko.netlify.app/",
+    "demo": " https://youtu.be/48HMkKR1SBI",
+    "discord": "SH | Unagiboi#1789"
+  },
+  {
+    "info": "It's a code-breaking PvP game which utilized ZKP for ensuring integrity of the game.",
+    "source_code": "https://github.com/enu-kuro/zku-final-project",
+    "source_code1": "https://github.com/enu-kuro/zku-final-projetct-frontend",
+    "website": "https://zku-final-projetct-frontend-oaaag8vco-enu-kuro.vercel.app/",
+    "demo": " video ",
+    "discord": "Kurose#5055"
+  },
+  {
+    "info": "Private airdrop system using zero-knowledge to preserve privacy and anonymity.",
+    "source_code": "Source Code: https://github.com/TalDerei/Private-Airdrops",
+    "discord": "Margulus#4273",
+    "demo": " https://www.youtube.com/watch?v=dwbhJYUpA2E&feature=youtu.be"
+  },
+  {
+    "info": "This is a decentralized application that will allow anyone to anonymously post information.",
+    "source_code": "Source Code: https://github.com/hakymulla/zkwiki",
+    "discord": "hakymulla#5532"
+  },
+  {
+    "info": "Voting app for selecting candidate.",
+    "source_code": "Source Code: https://github.com/lamwong1112/ZKU-voting",
+    "website": "https://final-blush.vercel.app/vote",
+    "demo": " https://youtu.be/l6ZjeDsoIRs",
+    "discord": "Ching#1333"
+  },
+  {
+    "info": "A background checker using zkp.",
+    "source_code": "Source Code: https://github.com/tomoima525/continuum",
+    "website": "https://continuum-swart.vercel.app/",
+    "demo": " https://youtu.be/bco4cvXuQUE",
+    "demo1": " slides",
+    "discord": "tomo#9487"
+  },
+  {
+    "info": "An on-chain auto chess battle game secured by zero-knowledge proof.",
+    "source_code": "Source Code:https://github.com/HKerStanley/zkautochess",
+    "website": " https://zkautochess.vercel.app/",
+    "demo": " https://drive.protonmail.com/urls/QYD1C4RZAM#YdjSPb1EBWl5",
+    "discord": "HKerStanley#4125"
+  },
+  {
+    "info": "ZKPayroll for Web3 community.",
+    "source_code": "https://github.com/Harsh8196/Harmony-ZKU/tree/main/ZKPayroll/Backend",
+    "source_code1": "https://github.com/Harsh8196/Harmony-ZKU/tree/main/ZKPayroll%20Frontend/zkpayroll-ui",
+    "website": "https://glowing-dusk-2b3656.netlify.app/",
+    "demo": " video",
+    "discord": "Harsh8196#1795"
+  },
+  {
+    "info": "Mental math game using ZK",
+    "source_code": "Source Code: https://github.com/richikchanda1999/zksm",
+    "demo": " https://youtu.be/I9QLvlO61UE",
+    "discord": "richik.eth#0844"
+  },
+  {
+    "info": "On-chain reputation based anonymous login system.",
+    "source_code0": "Frontend 1: https://github.com/JanRuettinger/athletia_nft_frontend",
+    "source_code1": "Frontend 2: https://github.com/JanRuettinger/aletheia_frontend_demo",
+    "source_code2": "Backend 1: https://github.com/JanRuettinger/reputation_maintenance_service",
+    "source_code3": "Backend 2: https://github.com/JanRuettinger/reputation_backend",
+    "source_code4": "Backend 3: https://github.com/JanRuettinger/aletheia_backend_demo",
+    "demo": " https://www.loom.com/share/74411a0181f6483f9335ee882b6c0675",
+    "discord": "JanR#0893"
+  },
+  {
+    "info": "A fun game about flipping tiles but not hitting the other players flipped tile.",
+    "source_code": "Source Code: https://github.com/zamblegame/zamble",
+    "website": "https://zamble.netlify.app/",
+    "demo": " https://youtu.be/B0ekDeoGB0g",
+    "discord": "sebseb#0605"
+  },
+  {
+    "info": "A ZK-SNARK based Ethereum ultra-light client.",
+    "source_code": "Source Code: https://github.com/kaushik-himself/ethereum-zk-client",
+    "website": "https://www.npmjs.com/package/ethereum-zk-client",
+    "demo": "https://drive.google.com/file/d/1f4zQw7W45tn7CRm8slYtmKlKae_4MQx1",
+    "discord": "k15n#0547"
+  },
+  {
+    "info": "Create blind auctions that only show a bidder's address and hashed bid, and rely on an auctioneer to run a zk proof to get the winning bid.",
+    "source_code": "Source Code: https://github.com/heivenn/zk-blind-auction",
+    "website": "https://zk-blind-auction.vercel.app/",
+    "demo": "https://www.youtube.com/watch?v=RPAUQHZ0yIE (recommend playback speed 2x)",
+    "discord": "Venn#3751"
+  },
+  {
+    "info": "An on-chain battleship game based on zero-knowledge proofs.",
+    "source_code": "Source Code: https://github.com/CDDelta/battleship3",
+    "website": "https://battleship3.web.app/",
+    "demo": " https://streamable.com/8oipf2",
+    "discord": "JY#4313"
+  }
+]

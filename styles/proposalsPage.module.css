@@ -1,0 +1,167 @@
+.container {
+    padding: 0 0rem;
+/* color: rgb(245, 222, 179) */
+/* color:rgb(255, 237, 205) */
+}
+
+.main {
+    min-height: 100vh;
+    padding: 1rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.span {
+    display: block;
+}
+
+
+.maindivdark{
+    z-index: 0;
+    position: relative;
+    max-height: 80vh;
+    /* box-shadow: 0 0 100px rgba(0, 0, 0, 0.5); */
+    
+}
+
+.maindivlight{
+    z-index: 0;
+    position: relative;
+    max-height: 80vh;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+}
+
+.fade {
+    z-index: 1;
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 1px black;
+    border-radius: 5px;
+    background: linear-gradient(to top, rgba(8, 17, 143, 1), rgba(8, 17, 143, 0) 5%, rgba(8, 17, 143, 0) 95%, rgba(8, 17, 143, 1) 100%);
+}
+
+.startdiv {
+    min-height: 100vh;
+    padding: 1rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
+    background-color: #08128F;
+    display:block;
+    z-index: 999;
+    position: fixed; 
+	width: 100%; 
+    height: 45px; 
+    object-fit: cover; 
+    overflow: hidden;
+    border-bottom: 1px solid  #FFD700;
+}
+
+.logodiv {
+    position: fixed;
+    right: 46%;
+}
+
+.bannertext1 {
+    position: relative;
+    top: -60px;
+    left:50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    position: relative;
+    top: 4px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-right: 75px;
+
+}
+
+.logs {
+    /* color: #A3E5BA; */
+    color: #FFD700;
+    font-weight: bold;
+    margin-top: 0;
+    line-height: 1.5;
+    font-size: 1.2rem;
+    height: 70px;
+    z-index: 1;
+}
+
+.divnames {
+    text-align: center;
+}
+
+.button {
+    padding: 8px 16px;
+    box-shadow: 0 0 2px white;
+    background-color: #0057B8;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.buttonLoading {
+    z-index: 10000;
+    padding: 8px 16px;
+    box-shadow: 0 0 2px white;
+    background-color: #0057b8;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.button:active {
+    position: relative;
+    top: 1px;
+}
+
+.title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 4rem;
+}
+
+.title,
+.description {
+    text-align: center;
+}
+
+.description {
+    margin: 2rem 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+}
+
+.logoutButton {
+    position: absolute;
+    display: inline;
+    z-index: 999;
+    left: 0px;
+    top: 0px;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 8px 16px;
+    box-shadow: 0 0 2px white;
+    background-color: #0057b8;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+  }
