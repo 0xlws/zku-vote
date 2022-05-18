@@ -4,4 +4,5 @@
   - https://github.com/semaphore-protocol/boilerplate
   - https://github.com/alii/nextjs-discord-oauth
 
-Info coming soon.
+## Working demo:
+  - https://zku-vote-0xlws.vercel.app/
