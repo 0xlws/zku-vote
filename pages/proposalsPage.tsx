@@ -39,7 +39,7 @@ const cfg = {
   rinkebyUrl: process.env.NEXT_PUBLIC_RINKEBY_URL,
   walletAddress: process.env.NEXT_PUBLIC_WALLET_ADDRESS,
   pKey: process.env.NEXT_PUBLIC_PRIVATE_KEY,
-  hmnyMainnet: process.env.NEXT_PUBLIC_MAINNET_ADDRESS
+  hmnyMainnet: process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
 };
 
 // rinkeby
@@ -216,6 +216,7 @@ export default function Home(props: Props) {
       (leaf: string) => identityCommitment.toString() === leaf
     );
     if (!leavesBool.includes(true)) {
+      setLogs("Loading, please wait before voting...");
       const identityArr = formatId(identityCommitment);
 
       let tx = await contract.addLeaf(identityArr);
@@ -229,6 +230,7 @@ export default function Home(props: Props) {
       }
       await contract.setRoot(1, tree.root);
     }
+    setLogs(`Welcome ${userRole![0]}`);
   }
 
   async function giveVote(choice: any) {
@@ -246,8 +248,6 @@ export default function Home(props: Props) {
     const leavesBytes32 = await getLeaves();
     const identityCommitments = parseIdArr(leavesBytes32);
 
-    setLogs("Registered user");
-
     try {
       const merkleProof = generateMerkleProof(
         20,
@@ -255,6 +255,7 @@ export default function Home(props: Props) {
         identityCommitments,
         identityCommitment.toString()
       );
+      setLogs("Verified user. Creating your Semaphore proof...");
       const vote = choice[1];
       const shortenedVote = choice[1].slice(0, -50);
       const witness = Semaphore.genWitness(
@@ -270,7 +271,6 @@ export default function Home(props: Props) {
         "./semaphore.wasm",
         "./semaphore_final.zkey"
       );
-      setLogs("Verified user. Creating your Semaphore proof...");
       const solidityProof = Semaphore.packToSolidityProof(proof);
       const strIdentityCommitment = identityCommitment.toString();
       setLogs("On-chain verification and voting in progress...");

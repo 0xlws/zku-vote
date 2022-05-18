@@ -26,6 +26,7 @@ export const config = {
   clientId: validateEnv("CLIENT_ID"),
   clientSecret: validateEnv("CLIENT_SECRET"),
   appUri: validateEnv("APP_URI", "https://zku-vote-0xlws.vercel.app", true),
+  // appUri: validateEnv("APP_URI", "http://localhost:3000", true),
   jwtSecret: validateEnv(
     "JWT_SECRET",
     "this is a development value that should be changed in production!!!!!",
