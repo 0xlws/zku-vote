@@ -235,7 +235,7 @@ export default function Home(props: Props) {
 
   async function giveVote(choice: any) {
     const role: string = userRole![0];
-    if (role !== Role[4][0]) {
+    if (role !== Role[0][0]) {
       setLogs("Only governors can vote :)");
       return null;
     }
@@ -478,9 +478,23 @@ export default function Home(props: Props) {
                     </Grid>
                   ))
                 ) : (
-                  <div className={styles.buttonLoading}>
+                  <div
+                    style={{
+                      overflow: "hidden",
+                      position: "absolute",
+                      display: "block",
+                      left: "-50%",
+                      bottom: "0%",
+                      zIndex: "1000",
+                      background: "#0057b8",
+                      boxShadow: "0 0 10px black",
+                      textShadow: "0 0 50px #08128F",
+                      height:"100px",
+                      borderRadius:"5px",
+                      padding:"10px"
+                    }}
+                  >
                     <p>Loading...</p>
-                    <p></p>
                   </div>
                 )}
               </Grid>

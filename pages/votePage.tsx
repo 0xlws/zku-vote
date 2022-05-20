@@ -322,9 +322,8 @@ export default function VotePage(props: Props): any {
                     </Grid>
                   ))
                 ) : (
-                  <div className={styles.buttonLoading}>
+                  <div style={{ marginLeft: "20%" }}>
                     <p>Loading...</p>
-                    <p></p>
                   </div>
                 )}
               </Grid>
