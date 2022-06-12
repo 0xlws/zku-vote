@@ -23,7 +23,7 @@ export default function Home(props: any) {
       localStorage.setItem("user", JSON.stringify(props.discordUser));
     }
     if (
-      JSON.stringify(userState.discordUser) !== localStorage.getItem("user")
+      JSON.stringify(discordUser) !== localStorage.getItem("user")
     ) {
       setUserState(JSON.parse(localStorage.getItem("user")!));
     }
@@ -31,7 +31,7 @@ export default function Home(props: any) {
       setPage(localStorage.getItem("page")!);
     }
     // console.log({ localStorage });
-  });
+  },[discordUser, userState.discordUser, page, props.discordUser, setPage]);
 
   return (
     <>
