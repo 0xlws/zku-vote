@@ -10,10 +10,16 @@ import VotePage from "../components/votePage";
 export default function Home(props: any) {
   const { page, setPage } = useContext(PageContext);
   const [userState, setUserState] = useState<any>(props);
+  
+  let discordUser = false
+
+  if(props.discordUser !== false) {
+    discordUser = props
+  }
 
   useEffect(() => {
     // console.log(localStorage.getItem("user"))
-    if (props.discordUser) {
+    if (discordUser) {
       localStorage.setItem("user", JSON.stringify(props.discordUser));
     }
     if (
@@ -25,7 +31,7 @@ export default function Home(props: any) {
       setPage(localStorage.getItem("page")!);
     }
     // console.log({ localStorage });
-  }, [page, setPage, props.discordUser, userState.discordUser]);
+  });
 
   return (
     <>
