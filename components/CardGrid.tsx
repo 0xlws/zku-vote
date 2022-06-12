@@ -123,11 +123,11 @@ export default function CardGrid({ userId, roles }: any) {
     setTimeout(() => {
       display = "none";
     }, 3000);
-  }, []);
+  });
 
-  React.useEffect(() => {
-    load();
-  }, [refresh]);
+  // React.useEffect(() => {
+  //   load();
+  // });
 
   //__________________________________________________
 

@@ -19,7 +19,7 @@ const VotePage = ({ props }: any) => {
   }
   useEffect(() => {
     if (router.asPath == "/votePage") router.replace("/");
-  }, []);
+  });
 
   return (
     <>

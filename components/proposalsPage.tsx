@@ -18,7 +18,7 @@ export const ProposalsPage = ({ props }: any) => {
 
   useEffect(() => {
     if (router.asPath == "/proposalsPage") router.replace("/");
-  }, []);
+  });
 
   return (
     <>

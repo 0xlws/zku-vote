@@ -80,11 +80,11 @@ export default function ControlledAccordions({ userId, roles }: any) {
     if (userId !== "0") {
       addLeaf();
     }
-  }, []);
+  });
 
-  React.useEffect(() => {
-    load();
-  }, [refresh]);
+  // React.useEffect(() => {
+  //   load();
+  // }, [refresh]);
 
   //__________________________________________________
 
