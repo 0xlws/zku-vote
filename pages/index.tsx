@@ -7,15 +7,17 @@ import { useContext } from "react";
 import { PageContext } from "../contexts/PageContext";
 import VotePage from "../components/votePage";
 
-export default function Home() {
-  let props = { discordUser: false };
+export default function Home(props: any) {
+// export default function Home() {
+  // let props = { discordUser: false };
   const { page, setPage } = useContext(PageContext);
   // const [userState, setUserState] = useState<any>(props);
   let discordUser: any;
-  
-  if (props.discordUser !== false) {
-    discordUser = props;
-  }
+  console.log({props})
+  console.log(Object.values(props).length === 0)
+  // if (props.discordUser !== false) {
+  //   discordUser = props;
+  // }
   
   useEffect( () => {
 
