@@ -7,11 +7,11 @@ import { useContext } from "react";
 import { PageContext } from "../contexts/PageContext";
 import VotePage from "../components/votePage";
 
-export default function Home(props: any) {
+export default function Home() {
+  let props = {discordUser : false}
   const { page, setPage } = useContext(PageContext);
   const [userState, setUserState] = useState<any>(props);
-  
-  let discordUser = false
+  let discordUser: any
 
   if(props.discordUser !== false) {
     discordUser = props
@@ -41,12 +41,12 @@ export default function Home(props: any) {
   );
 }
 
-export const getServerSideProps: any = async function (
-  ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-) {
-  const user = parseUser(ctx);
+// export const getServerSideProps: any = async function (
+//   ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+// ) {
+//   const user = parseUser(ctx);
 
-  if (user == null) return { props: { discordUser: false } };
+//   if (user == null) return { props: { discordUser: false } };
 
-  return { props: { discordUser: user } };
-};
+//   return { props: { discordUser: user } };
+// };
