@@ -6,8 +6,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 
-export const LoginButton = () => {
-// export const LoginButton = ({ props }: any) => {
+export const LoginButton = ({ props }: any) => {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -16,7 +15,9 @@ export const LoginButton = () => {
     router.push("/api/logout");
   };
 
-  let notWorking = false
+  let notWorking = false;
+
+  console.log({ props });
 
   return (
     <Tooltip title={notWorking ? "Logout" : "Login"} arrow>
@@ -34,9 +35,7 @@ export const LoginButton = () => {
           borderRadius: "2",
         }}
         onClick={
-          notWorking
-            ? () => handleLogout()
-            : () => router.push("/api/oauth")
+          notWorking ? () => handleLogout() : () => router.push("/api/oauth")
         }
       >
         {notWorking ? <LogoutIcon /> : <LoginIcon />}

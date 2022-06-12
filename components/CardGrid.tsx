@@ -97,7 +97,7 @@ let height = "300%";
 let user = {};
 
 // export default function CardGrid({ userId, roles }: any) {
-export default function CardGrid() {
+export default function CardGrid({ props }: any) {
   // const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -106,9 +106,11 @@ export default function CardGrid() {
     handleOpen();
   };
 
+  console.log({ props });
 
-  let roles= ['1']
-  let userId= '0'
+  let userId = "0";
+  let roles = ["1"];
+
   const [Data, setData] = useState<any>();
   const [success, setSuccess] = useState("");
   const [open2, setOpen2] = useState(false);
@@ -597,22 +599,22 @@ export default function CardGrid() {
         giveVote={giveVote}
       />
       <Alert
-     sx={{
-      // display:"flex",
-      opacity:open? 0.5 : 0.75,
+        sx={{
+          // display:"flex",
+          opacity: open ? 0.5 : 0.75,
 
-        pointerEvents:"none",
+          pointerEvents: "none",
 
-      zIndex: "1204",
-      position: "fixed",
-      marginLeft: "auto",
-      marginRight: "auto",
-      left: 0,
-      right: 0,
-      bottom: "10px",
-      width: "40%",
-      fontWeight:"bold"
-    }}
+          zIndex: "1204",
+          position: "fixed",
+          marginLeft: "auto",
+          marginRight: "auto",
+          left: 0,
+          right: 0,
+          bottom: "10px",
+          width: "40%",
+          fontWeight: "bold",
+        }}
         variant="filled"
         severity="info"
       >

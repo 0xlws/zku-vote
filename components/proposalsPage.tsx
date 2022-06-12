@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LoginButton } from "./LoginButton";
 
-export const ProposalsPage = () => {
-// export const ProposalsPage = ({ props }: any) => {
+export const ProposalsPage = ({ props }: any) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(!open);
   const router = useRouter();
+
+  console.log({ props });
   // let userId = "0";
   // let roles: any[] = [];
 
@@ -23,8 +24,8 @@ export const ProposalsPage = () => {
 
   return (
     <>
-      <LoginButton />
-      <CardGrid />
+      <LoginButton props={props} />
+      <CardGrid props={props} />
       {/* <LoginButton props={props} /> */}
       {/* <CardGrid userId={userId} roles={roles} /> */}
     </>

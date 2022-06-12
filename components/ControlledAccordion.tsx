@@ -59,7 +59,7 @@ interface Props {
   user: DiscordUser;
 }
 
-export default function ControlledAccordions({ userId, roles }: any) {
+export default function ControlledAccordions({ props }: any) {
   const [expanded, setExpanded] = useState<string | false>("panel1");
   const { data, setData } = useContext(UserContext);
   const [arr, setArr] = useState<(string | boolean)[]>([
@@ -75,6 +75,10 @@ export default function ControlledAccordions({ userId, roles }: any) {
   const [refresh, setRefresh] = React.useState(false);
 
   //__________________________________________________
+
+  console.log({ props });
+  let userId = "0";
+  let roles = ["1", "2"];
 
   React.useEffect(() => {
     if (userId !== "0") {
@@ -338,22 +342,22 @@ export default function ControlledAccordions({ userId, roles }: any) {
       </Accordion>
       {/* <ConsecutiveSnackbars logs ={logs} /> */}
       <Alert
-    sx={{
-      // display:"flex",
-      opacity:open? 0.5 : 0.75,
+        sx={{
+          // display:"flex",
+          opacity: open ? 0.5 : 0.75,
 
-        pointerEvents:"none",
+          pointerEvents: "none",
 
-      zIndex: "1204",
-      position: "fixed",
-      marginLeft: "auto",
-      marginRight: "auto",
-      left: 0,
-      right: 0,
-      bottom: "10px",
-      width: "40%",
-      fontWeight:"bold"
-    }}
+          zIndex: "1204",
+          position: "fixed",
+          marginLeft: "auto",
+          marginRight: "auto",
+          left: 0,
+          right: 0,
+          bottom: "10px",
+          width: "40%",
+          fontWeight: "bold",
+        }}
         variant="filled"
         severity="info"
       >
