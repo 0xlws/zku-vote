@@ -8,17 +8,7 @@ import { useRouter } from "next/router";
 // console.log(SortedList)
 
 const VotePage = ({ props }: any) => {
-  const { data, setData } = useContext(UserContext);
   const router = useRouter();
-
-  console.log({ props });
-
-  let userId = "0";
-  let roles: any[] = [];
-  // if (props.discordUser) {
-  //   userId = props.discordUser.user.id;
-  //   roles = props.discordUser.roles;
-  // }
 
   useEffect(() => {
     if (router.asPath == "/votePage") router.replace("/");

@@ -7,6 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 
 export const LoginButton = ({ props }: any) => {
+  let LoggedIn = Object.values(props).length !== 0;
+
   const router = useRouter();
 
   const handleLogout = () => {
@@ -15,12 +17,8 @@ export const LoginButton = ({ props }: any) => {
     router.push("/api/logout");
   };
 
-  let notWorking = false;
-
-  console.log({ props });
-
   return (
-    <Tooltip title={notWorking ? "Logout" : "Login"} arrow>
+    <Tooltip title={LoggedIn ? "Logout" : "Login"} arrow>
       <IconButton
         sx={{
           zIndex: 1202,
@@ -35,10 +33,10 @@ export const LoginButton = ({ props }: any) => {
           borderRadius: "2",
         }}
         onClick={
-          notWorking ? () => handleLogout() : () => router.push("/api/oauth")
+          LoggedIn ? () => handleLogout() : () => router.push("/api/oauth")
         }
       >
-        {notWorking ? <LogoutIcon /> : <LoginIcon />}
+        {LoggedIn ? <LogoutIcon /> : <LoginIcon />}
       </IconButton>
     </Tooltip>
   );

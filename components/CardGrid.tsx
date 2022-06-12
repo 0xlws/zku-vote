@@ -98,6 +98,8 @@ let user = {};
 
 // export default function CardGrid({ userId, roles }: any) {
 export default function CardGrid({ props }: any) {
+  let LoggedIn = Object.values(props).length !== 0;
+
   // const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -105,11 +107,6 @@ export default function CardGrid({ props }: any) {
     user = proposal;
     handleOpen();
   };
-
-  console.log({ props });
-
-  let userId = "0";
-  let roles = ["1"];
 
   const [Data, setData] = useState<any>();
   const [success, setSuccess] = useState("");
@@ -119,27 +116,12 @@ export default function CardGrid({ props }: any) {
   const [userData, setUserData] = useState<any>("");
   const [refresh, setRefresh] = useState(false);
 
-  //__________________________________________________
+  let userId = "0";
+  let roles = ["1"];
 
-  React.useEffect(() => {
-    if (userId !== "0") {
-      addLeaf();
-    }
-    opacity = 0;
-    setTimeout(() => {
-      display = "none";
-    }, 3000);
-  });
-
-  // React.useEffect(() => {
-  //   load();
-  // });
-
-  //__________________________________________________
-
-  // console.log({Data})
-  if (!Data) {
-    load();
+  if (LoggedIn) {
+    userId = props.discordUser.user.id;
+    roles = props.discordUser.roles;
   }
 
   const Role = [
@@ -165,14 +147,30 @@ export default function CardGrid({ props }: any) {
     userRole = [""];
   }
 
-  // console.log({ userRole });
-
   const [logs, setLogs] = useState(`Welcome ${userRole![0]}`);
 
-  console.log({ logs });
+  //__________________________________________________
 
-  if (userRole == null) {
-    return <div>Access denied</div>;
+  React.useEffect(() => {
+    // if (userId !== "0") {
+    if (LoggedIn) {
+      addLeaf();
+    }
+    opacity = 0;
+    setTimeout(() => {
+      display = "none";
+    }, 3000);
+  }, [LoggedIn]);
+
+  // React.useEffect(() => {
+  //   load();
+  // });
+
+  //__________________________________________________
+
+  // console.log({Data})
+  if (!Data) {
+    load();
   }
 
   //__________________________________________________

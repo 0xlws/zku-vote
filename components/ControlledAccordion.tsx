@@ -60,6 +60,8 @@ interface Props {
 }
 
 export default function ControlledAccordions({ props }: any) {
+  let LoggedIn = Object.values(props).length !== 0;
+
   const [expanded, setExpanded] = useState<string | false>("panel1");
   const { data, setData } = useContext(UserContext);
   const [arr, setArr] = useState<(string | boolean)[]>([
@@ -74,23 +76,13 @@ export default function ControlledAccordions({ props }: any) {
   const [choice, setChoice] = React.useState([]);
   const [refresh, setRefresh] = React.useState(false);
 
-  //__________________________________________________
-
-  console.log({ props });
   let userId = "0";
-  let roles = ["1", "2"];
+  let roles = ["1"];
 
-  React.useEffect(() => {
-    if (userId !== "0") {
-      addLeaf();
-    }
-  });
-
-  // React.useEffect(() => {
-  //   load();
-  // }, [refresh]);
-
-  //__________________________________________________
+  if (LoggedIn) {
+    userId = props.discordUser.user.id;
+    roles = props.discordUser.roles;
+  }
 
   /**
    * userRole
@@ -109,12 +101,12 @@ export default function ControlledAccordions({ props }: any) {
     ["c2student", "942604727613554799"],
   ];
 
-  let userRole: any[] | null = null;
+  let userRole: string[] | null = null;
   loop1: for (let i = 0; i < Role.length; i++) {
     loop2: for (let n = 0; n < roles.length; n++) {
       if (Role[i][1] === roles[n]) {
         userRole = Role[i];
-        // setUrole(userRole![0]);
+
         break loop1;
       }
     }
@@ -124,12 +116,22 @@ export default function ControlledAccordions({ props }: any) {
     userRole = [""];
   }
 
-  const [logs, setLogs] = React.useState(`Welcome ${userRole![0]}`);
-  if (userRole == null) {
-    return <div>Access denied</div>;
-  }
+  const [logs, setLogs] = useState(`Welcome ${userRole![0]}`);
 
-  console.log({ logs });
+  //__________________________________________________
+
+  React.useEffect(() => {
+    // if (userId !== "0") {
+    if (LoggedIn) {
+      addLeaf();
+    }
+  }, [LoggedIn]);
+
+  // React.useEffect(() => {
+  //   load();
+  // }, [refresh]);
+
+  //__________________________________________________
 
   if (!candidates) {
     load();

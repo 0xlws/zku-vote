@@ -11,8 +11,8 @@ export default function Home(props: any) {
   const { page, setPage } = useContext(PageContext);
   const [userState, setUserState] = useState<any>(props);
   let LoggedIn = Object.values(userState).length !== 0;
-  console.log({ userState });
-  console.log({ LoggedIn });
+  // console.log({ userState });
+  // console.log({ LoggedIn });
 
   useEffect(() => {
     if (localStorage.getItem("page") == null) {
