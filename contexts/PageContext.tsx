@@ -3,8 +3,8 @@ import { DiscordUser, Props } from "../utils/types"
 
 
 const contextDefaultValues = {
-    page: "" || null,
-    setPage: (page: string | null) => {}
+    page: "1",
+    setPage: (page: string ) => {}
   };
 
 export const PageContext = createContext(contextDefaultValues);
