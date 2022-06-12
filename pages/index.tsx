@@ -20,7 +20,7 @@ export default function Home(props: any) {
   useEffect(() => {
     // console.log(localStorage.getItem("user"))
     if (discordUser) {
-      localStorage.setItem("user", JSON.stringify(props.discordUser));
+      localStorage.setItem("user", JSON.stringify(discordUser));
     }
     if (
       JSON.stringify(discordUser) !== localStorage.getItem("user")
@@ -31,7 +31,7 @@ export default function Home(props: any) {
       setPage(localStorage.getItem("page")!);
     }
     // console.log({ localStorage });
-  },[discordUser, userState.discordUser, page, props.discordUser, setPage]);
+  },[discordUser, userState, page, setPage]);
 
   return (
     <>
