@@ -12,12 +12,12 @@ const VotePage = ({ props }: any) => {
   const router = useRouter();
 
   let userId = "0";
-  let roles = [];
-  if (props.discordUser) {
-    userId = props.discordUser.user.id;
-    roles = props.discordUser.roles;
-  }
-  
+  let roles: any[] = [];
+  // if (props.discordUser) {
+  //   userId = props.discordUser.user.id;
+  //   roles = props.discordUser.roles;
+  // }
+
   useEffect(() => {
     if (router.asPath == "/votePage") router.replace("/");
   });

@@ -9,12 +9,12 @@ export const ProposalsPage = ({ props }: any) => {
   const handleOpen = () => setOpen(!open);
   const router = useRouter();
   let userId = "0";
-  let roles = [];
+  let roles: any[] = [];
 
-  if (props.discordUser) {
-    userId = props.discordUser.user.id;
-    roles = props.discordUser.roles;
-  }
+  // if (props.discordUser) {
+  //   userId = props.discordUser.user.id;
+  //   roles = props.discordUser.roles;
+  // }
 
   useEffect(() => {
     if (router.asPath == "/proposalsPage") router.replace("/");
