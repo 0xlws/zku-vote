@@ -593,17 +593,22 @@ export default function CardGrid({ userId, roles }: any) {
         giveVote={giveVote}
       />
       <Alert
-        sx={{
-          // display:"flex",
-          zIndex: "1204",
-          position: "fixed",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          bottom: "10px",
-          width: "40%",
-        }}
+     sx={{
+      // display:"flex",
+      opacity:open? 0.5 : 0.75,
+
+        pointerEvents:"none",
+
+      zIndex: "1204",
+      position: "fixed",
+      marginLeft: "auto",
+      marginRight: "auto",
+      left: 0,
+      right: 0,
+      bottom: "10px",
+      width: "40%",
+      fontWeight:"bold"
+    }}
         variant="filled"
         severity="info"
       >

@@ -12,8 +12,12 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Grid from "@mui/material/Grid";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import CircularProgress from "@mui/material/CircularProgress";
+
+
+let opacity = 1
 
 const options = ["0", "1"];
 
@@ -147,7 +151,8 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 let nameList = ["An", "error", "occurred"];
 
 const SortedList = ({ userId, candidates, arr, giveVote }: any) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false)
   // const [value, setValue] = React.useState("None selected");
   const { data, setData } = useContext(UserContext);
   let Candidates = [];
@@ -155,6 +160,11 @@ const SortedList = ({ userId, candidates, arr, giveVote }: any) => {
     Candidates = candidates.map((names: any[]) => names[0]);
     nameList = Candidates;
   }
+
+  useEffect(()=>{
+    opacity=0
+    setLoaded(true)
+  },[])
 
   const letters = nameList.map((b) => b.charAt(0).toUpperCase());
   const uniqueLetters = Array.from(new Set(letters));
@@ -279,8 +289,28 @@ const SortedList = ({ userId, candidates, arr, giveVote }: any) => {
   return (
     <div className={styles.contactsContainer}>
       <main className={styles.main}>
-        <>
-          <div key={0}>{groupedNames()}</div>
+        <>{loaded?
+          <div key={0}>{groupedNames()}</div> :
+          <div
+          className={styles.xxx}
+          style={{
+            zIndex: 1204,
+            position: "absolute",
+            fontSize: "6rem",
+            textAlign: "center",
+            left:0,
+            right:0,
+            marginLeft:"auto",
+            marginRight:"auto",
+            textShadow: "0 0 10px grey",
+            transition: `opacity 3s ease-out`,
+            opacity: `${opacity}`,
+            filter: "scale(2)",
+          }}
+        >
+          <CircularProgress />
+        </div>
+        }
         </>
 
         <ConfirmationDialogRaw
