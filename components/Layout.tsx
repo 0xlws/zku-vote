@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     setTimeout(() => {
       setOpacity(1);
     }, 500);
-  });
+  },[]);
 
   return (
     <>
