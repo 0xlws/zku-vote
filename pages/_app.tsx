@@ -13,7 +13,7 @@ import { PageContext } from "../contexts/PageContext";
 function MyApp({ Component, pageProps }: any) {
   const [data, setData] = useState({});
   const [auth, setAuth] = useState<boolean | {}>(false);
-  const [page, setPage] = useState<any>('1');
+  const [page, setPage] = useState<any>(null);
 
   return (
     <ThemeProvider theme={theme}>

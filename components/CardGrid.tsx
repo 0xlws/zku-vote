@@ -96,8 +96,9 @@ let display = "block";
 let height = "300%";
 let user = {};
 
-export default function CardGrid({ userId, roles }: any) {
-  const [loaded, setLoaded] = useState(false);
+// export default function CardGrid({ userId, roles }: any) {
+export default function CardGrid() {
+  // const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const handleClick = (proposal: any) => {
@@ -105,6 +106,9 @@ export default function CardGrid({ userId, roles }: any) {
     handleOpen();
   };
 
+
+  let roles= ['1']
+  let userId= '0'
   const [Data, setData] = useState<any>();
   const [success, setSuccess] = useState("");
   const [open2, setOpen2] = useState(false);
@@ -246,7 +250,7 @@ export default function CardGrid({ userId, roles }: any) {
         subsInfo[i],
       ]);
       setData(renderData);
-      setLoaded(true);
+      // setLoaded(true);
     }
   }
   async function getLeaves() {

@@ -8,37 +8,42 @@ import { PageContext } from "../contexts/PageContext";
 import VotePage from "../components/votePage";
 
 export default function Home() {
-  let props = {discordUser : false}
+  let props = { discordUser: false };
   const { page, setPage } = useContext(PageContext);
-  const [userState, setUserState] = useState<any>(props);
-  let discordUser: any
-
-  if(props.discordUser !== false) {
-    discordUser = props
+  // const [userState, setUserState] = useState<any>(props);
+  let discordUser: any;
+  
+  if (props.discordUser !== false) {
+    discordUser = props;
   }
+  
+  useEffect( () => {
 
-  useEffect(() => {
+    if (localStorage.getItem("page") == null) {
+      setPage('1')
+    }
+    if (localStorage.getItem("page") !== null) {
+      if (page !== localStorage.getItem("page")) {
+        setPage(localStorage.getItem("page")!);
+
+      }
+    }
     // console.log(localStorage.getItem("user"))
     if (discordUser) {
       localStorage.setItem("user", JSON.stringify(discordUser));
     }
-    if (
-      JSON.stringify(discordUser) !== localStorage.getItem("user")
-    ) {
-      setUserState(JSON.parse(localStorage.getItem("user")!));
+    if (JSON.stringify(discordUser) !== localStorage.getItem("user")) {
+      // setUserState(JSON.parse(localStorage.getItem("user")!));
     }
-    console.log({page})
-    console.log(localStorage.getItem("page"))
-    // if (page !== localStorage.getItem("page")) {
-    //   setPage(localStorage.getItem("page")!);
-    // }
     // console.log({ localStorage });
-  },[discordUser, userState, page, setPage]);
+  },[]);
+
 
   return (
     <>
-      {page == "0" && <VotePage props={userState} />}
-      {page == "1" && <ProposalsPage props={userState} />}
+      {page == "0" && <VotePage props={props} />}
+      {/* {page == "1" && <ProposalsPage props={props} />} */}
+      {page == "1" && <ProposalsPage />}
     </>
   );
 }

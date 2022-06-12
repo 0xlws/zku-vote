@@ -6,7 +6,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 
-export const LoginButton = ({ props }: any) => {
+export const LoginButton = () => {
+// export const LoginButton = ({ props }: any) => {
   const router = useRouter();
 
   const handleLogout = () => {
