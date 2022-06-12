@@ -25,7 +25,7 @@ export default function Home(props: any) {
       setPage(localStorage.getItem("page")!);
     }
     // console.log({ localStorage });
-  }, []);
+  }, [page, props.discordUser, userState.discordUser]);
 
   return (
     <>
