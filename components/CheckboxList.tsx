@@ -6,7 +6,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 
-const options = ["Most helpful student", "*Some other campaign*"];
+const options = [
+  "Most helpful student",
+  // "*Some other campaign*"
+];
 
 export default function CheckboxList(props: {
   setArrFunc: (arg0: (string | boolean)[]) => void;

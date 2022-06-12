@@ -19,7 +19,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 let opacity = 1
 
-const options = ["0", "1"];
+const options = ["0"];
 
 export interface ConfirmationDialogRawProps {
   id: string;
