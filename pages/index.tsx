@@ -51,12 +51,12 @@ export default function Home(props: any) {
   );
 }
 
-// export const getServerSideProps: any = async function (
-//   ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-// ) {
-//   const user = parseUser(ctx);
+export const getServerSideProps: any = async function (
+  ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+) {
+  const user = parseUser(ctx);
 
-//   if (user == null) return { props: { discordUser: false } };
+  if (!user) return { props: { } };
 
-//   return { props: { discordUser: user } };
-// };
+  return { props: { discordUser: user } };
+};
