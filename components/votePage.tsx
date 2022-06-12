@@ -17,9 +17,9 @@ const VotePage = ({ props }: any) => {
     userId = props.discordUser.user.id;
     roles = props.discordUser.roles;
   }
-  useEffect(() => {
-    if (router.asPath == "/votePage") router.replace("/");
-  });
+  // useEffect(() => {
+  //   if (router.asPath == "/votePage") router.replace("/");
+  // });
 
   return (
     <>
