@@ -9,16 +9,16 @@ import SortedList from "./SortedList";
 import CheckboxList from "./CheckboxList";
 
 import { useContext, useState } from "react";
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 //
 
 import { BytesLike, providers, Contract, utils, Wallet } from "ethers";
 import { Strategy, ZkIdentity } from "@zk-kit/identity";
 import { generateMerkleProof, Semaphore } from "@zk-kit/protocols";
-import { DiscordUser } from "utils/types";
-import VoterDemo from "artifacts/contracts/VoterDemo.sol/VoterDemo.json";
-import { formatId, parseIdArr } from "utils/convertId";
+import { DiscordUser } from "../utils/types";
+import VoterDemo from "../artifacts/contracts/VoterDemo.sol/VoterDemo.json";
+import { formatId, parseIdArr } from "../utils/convertId";
 import { poseidon } from "circomlibjs";
 import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
 

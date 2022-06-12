@@ -1,7 +1,7 @@
 import * as React from "react";
 import ControlledAccordion from "./ControlledAccordion";
 import { useContext, useEffect } from "react";
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 import { LoginButton } from "./LoginButton";
 import { useRouter } from "next/router";
 

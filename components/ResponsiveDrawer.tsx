@@ -14,7 +14,7 @@ import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import PollIcon from "@mui/icons-material/Poll";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
-import { PageContext } from "contexts/PageContext";
+import { PageContext } from "../contexts/PageContext";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext } from "react";

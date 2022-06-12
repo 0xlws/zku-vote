@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import ProposalsPage from "../components/proposalsPage";
 import { ParsedUrlQuery } from "querystring";
 import { GetServerSidePropsContext, PreviewData } from "next";
-import { parseUser } from "utils/parseUser";
+import { parseUser } from "../utils/parseUser";
 import { useContext } from "react";
-import { PageContext } from "contexts/PageContext";
+import { PageContext } from "../contexts/PageContext";
 import VotePage from "../components/votePage";
 
 export default function Home(props: any) {

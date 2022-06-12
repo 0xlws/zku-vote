@@ -7,7 +7,7 @@ import Tooltip from "@mui/material/Tooltip";
 import ResponsiveDrawer from "./ResponsiveDrawer";
 
 import { useContext } from "react";
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [opacity, setOpacity] = React.useState(0);

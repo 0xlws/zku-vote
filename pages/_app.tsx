@@ -3,12 +3,12 @@ import "../styles/globals.css";
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../styles/theme";
-import { UserContext } from "contexts/UserContext";
-import { AuthContext } from "contexts/AuthContext";
+import { UserContext } from "../contexts/UserContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { useState } from "react";
 
-import Layout from "components/Layout";
-import { PageContext } from "contexts/PageContext";
+import Layout from "../components/Layout";
+import { PageContext } from "../contexts/PageContext";
 
 function MyApp({ Component, pageProps }: any) {
   const [data, setData] = useState({});

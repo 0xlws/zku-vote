@@ -13,7 +13,7 @@ import Dialog from "@mui/material/Dialog";
 import Grid from "@mui/material/Grid";
 
 import { useContext } from "react";
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 const options = ["0", "1"];
 
