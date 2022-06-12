@@ -16,9 +16,9 @@ export const ProposalsPage = ({ props }: any) => {
     roles = props.discordUser.roles;
   }
 
-  // useEffect(() => {
-  //   if (router.asPath == "/proposalsPage") router.replace("/");
-  // });
+  useEffect(() => {
+    if (router.asPath == "/proposalsPage") router.replace("/");
+  });
 
   return (
     <>
