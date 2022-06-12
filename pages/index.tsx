@@ -25,7 +25,7 @@ export default function Home(props: any) {
       setPage(localStorage.getItem("page")!);
     }
     // console.log({ localStorage });
-  }, [page, props.discordUser, userState.discordUser]);
+  }, [page, setPage, props.discordUser, userState.discordUser]);
 
   return (
     <>
@@ -40,7 +40,7 @@ export const getServerSideProps: any = async function (
 ) {
   const user = parseUser(ctx);
 
-  if (!user) return { props: { discordUser: false } };
+  if (user == null) return { props: { discordUser: false } };
 
   return { props: { discordUser: user } };
 };
