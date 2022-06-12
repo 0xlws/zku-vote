@@ -15,8 +15,10 @@ export const LoginButton = ({ props }: any) => {
     router.push("/api/logout");
   };
 
+  let notWorking = false
+
   return (
-    <Tooltip title={props.discordUser ? "Logout" : "Login"} arrow>
+    <Tooltip title={notWorking ? "Logout" : "Login"} arrow>
       <IconButton
         sx={{
           zIndex: 1202,
@@ -31,12 +33,12 @@ export const LoginButton = ({ props }: any) => {
           borderRadius: "2",
         }}
         onClick={
-          props.discordUser
+          notWorking
             ? () => handleLogout()
             : () => router.push("/api/oauth")
         }
       >
-        {props.discordUser ? <LogoutIcon /> : <LoginIcon />}
+        {notWorking ? <LogoutIcon /> : <LoginIcon />}
       </IconButton>
     </Tooltip>
   );
