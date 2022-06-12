@@ -1,28 +1,41 @@
 html,
 body {
-    padding: 0;
-    margin: 0;
-    /* background-color: #1F3D5A; */
-    background-color: #0057B8;
-    /* background-color: dodgerblue; */
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif;
-    overflow: hidden;
-    }
+  user-select: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  background-color: #0057b8;
+  color: white;
+  font-family: montserrat;
+  background-color: #dddddd;
+  -webkit-font-smoothing: antialiased;
+  /* position: fixed; */
+  /* background-color: #1F3D5A; */
+  /* background-color: dodgerblue; */
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif; */
+  /* font-family:monteserrat, sans-serif; */
+  /* font-size: 1.5rem; */
+  /* font-weight: 1000; */
+  /* overflow: hidden;  */
+  /* transition: all 20s ease-out; */
+}
 
 a {
-    color: inherit;
-    color: #7FB3F1;
-    text-decoration: none;
+  color: inherit;
+  color: #7fb3f1;
+  text-decoration: none;
 }
 
 a:hover,
 a:focus,
 a:active {
-    text-decoration: underline;
+  text-decoration: none;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: inherit;
+  /* box-sizing: border-box; */
 }

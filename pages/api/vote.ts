@@ -59,12 +59,14 @@ export default async function handler(
 
     res.status(200).end();
   } catch (error: any) {
-    const { message } = JSON.parse(error.body).error;
-    const reason = message.substring(
-      message.indexOf("'") + 1,
-      message.lastIndexOf("'")
-    );
+    const message = JSON.parse(JSON.stringify(error));
+    res.status(500).send(message|| "Unknown error!");
+    // const { message } = JSON.parse(error.body).error;
+    // const reason = message.substring(
+    //   message.indexOf("'") + 1,
+    //   message.lastIndexOf("'")
+    // );
 
-    res.status(500).send(reason || "Unknown error!");
+    // res.status(500).send(reason || "Unknown error!");
   }
 }

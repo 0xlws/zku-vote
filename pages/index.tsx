@@ -1,35 +1,46 @@
-import React from "react";
-import { GetServerSidePropsContext, PreviewData } from "next";
-import LoginPage from "./loginPage";
+import React, { useState, useEffect } from "react";
+import ProposalsPage from "../components/proposalsPage";
 import { ParsedUrlQuery } from "querystring";
-import Layout from "../components/Layout";
-import { DiscordUser } from "../utils/types";
-import { parseUser } from "../utils/parseUser";
-import Menu from "./menu";
+import { GetServerSidePropsContext, PreviewData } from "next";
+import { parseUser } from "utils/parseUser";
+import { useContext } from "react";
+import { PageContext } from "contexts/PageContext";
+import VotePage from "../components/votePage";
 
-interface Props {
-  user: DiscordUser;
-}
+export default function Home(props: any) {
+  const { page, setPage } = useContext(PageContext);
+  const [userState, setUserState] = useState<any>(props);
 
-export default function Home(props: Props) {
-  if (!props.user || props.user == null) {
-    return (
-      <Layout>
-        <LoginPage />
-      </Layout>
-    );
-  }
+  useEffect(() => {
+    // console.log(localStorage.getItem("user"))
+    if (props.discordUser) {
+      localStorage.setItem("user", JSON.stringify(props.discordUser));
+    }
+    if (
+      JSON.stringify(userState.discordUser) !== localStorage.getItem("user")
+    ) {
+      setUserState(JSON.parse(localStorage.getItem("user")!));
+    }
+    if (page !== localStorage.getItem("page")) {
+      setPage(localStorage.getItem("page")!);
+    }
+    // console.log({ localStorage });
+  }, []);
 
   return (
-    <Layout>
-      <Menu />
-    </Layout>
+    <>
+      {page == "0" && <VotePage props={userState} />}
+      {page == "1" && <ProposalsPage props={userState} />}
+    </>
   );
 }
+
 export const getServerSideProps: any = async function (
   ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
   const user = parseUser(ctx);
 
-  return { props: { user } };
+  if (!user) return { props: { discordUser: false } };
+
+  return { props: { discordUser: user } };
 };

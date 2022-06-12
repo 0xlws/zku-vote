@@ -13,5 +13,6 @@ export default function logout(req: NextApiRequest, res: NextApiResponse) {
     })
   );
 
+
   res.redirect("/");
 }

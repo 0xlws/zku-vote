@@ -1,27 +1,28 @@
-import React from "react";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import SortedList from "./SortedList";
+import CheckboxList from "./CheckboxList";
+
+import { useContext, useState } from "react";
+import { UserContext } from "contexts/UserContext";
+
+//
+
 import { BytesLike, providers, Contract, utils, Wallet } from "ethers";
 import { Strategy, ZkIdentity } from "@zk-kit/identity";
 import { generateMerkleProof, Semaphore } from "@zk-kit/protocols";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
 import { DiscordUser } from "utils/types";
 import VoterDemo from "artifacts/contracts/VoterDemo.sol/VoterDemo.json";
 import { formatId, parseIdArr } from "utils/convertId";
-import GradeIcon from "@mui/icons-material/Grade";
-import Layout from "components/Layout";
-import { ParsedUrlQuery } from "querystring";
-import { GetServerSidePropsContext, PreviewData } from "next";
-import { parseUser } from "utils/parseUser";
 import { poseidon } from "circomlibjs";
 import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
+
+import Alert from "@mui/material/Alert";
 
 const cfg = {
   rinkebyUrl: process.env.NEXT_PUBLIC_RINKEBY_URL,
@@ -40,10 +41,7 @@ const cfg = {
 // const contract = VoterContract.connect(signer);
 
 // mainnet
-const VoterContract = new Contract(
-  `${cfg.hmnyMainnet}`,
-  VoterDemo.abi
-);
+const VoterContract = new Contract(`${cfg.hmnyMainnet}`, VoterDemo.abi);
 const provider = new providers.JsonRpcProvider(`${cfg.rinkebyUrl}`);
 const signer = new Wallet(`${cfg.pKey}`, provider);
 const contract = VoterContract.connect(signer);
@@ -61,8 +59,14 @@ interface Props {
   user: DiscordUser;
 }
 
-export default function VotePage(props: Props): any {
-  const [Data, setData] = React.useState<any>();
+export default function ControlledAccordions({ userId, roles }: any) {
+  const [expanded, setExpanded] = useState<string | false>("panel1");
+  const { data, setData } = useContext(UserContext);
+  const [arr, setArr] = useState<(string | boolean)[]>([
+    "Choose a campaign",
+    false,
+  ]);
+  const [candidates, setCandidates] = React.useState<any>();
   const [loaded, setLoaded] = React.useState(false);
   const [success, setSuccess] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -73,7 +77,9 @@ export default function VotePage(props: Props): any {
   //__________________________________________________
 
   React.useEffect(() => {
-    addLeaf();
+    if (userId !== "0") {
+      addLeaf();
+    }
   }, []);
 
   React.useEffect(() => {
@@ -81,9 +87,6 @@ export default function VotePage(props: Props): any {
   }, [refresh]);
 
   //__________________________________________________
-
-  const userId = props.user.user.id;
-  const roles = props.user.roles;
 
   /**
    * userRole
@@ -113,12 +116,18 @@ export default function VotePage(props: Props): any {
     }
   }
 
+  if (userRole == null) {
+    userRole = [""];
+  }
+
   const [logs, setLogs] = React.useState(`Welcome ${userRole![0]}`);
   if (userRole == null) {
     return <div>Access denied</div>;
   }
 
-  if (!Data) {
+  console.log({ logs });
+
+  if (!candidates) {
     load();
   }
 
@@ -126,8 +135,14 @@ export default function VotePage(props: Props): any {
 
   const handleClickOpen = (choice: any) => {
     const role: string = userRole![0];
-    if (role !== Role[3][0] && role !== Role[4][0]) {
-      setLogs("Only students can vote :)");
+    if (
+      role !== Role[0][0] &&
+      role !== Role[1][0] &&
+      role !== Role[2][0] &&
+      role !== Role[3][0] &&
+      role !== Role[4][0]
+    ) {
+      setLogs("Only ZKU members can vote :)");
       return null;
     }
     setChoice(choice);
@@ -144,18 +159,20 @@ export default function VotePage(props: Props): any {
 
   async function load() {
     const onChainData = await contract.getRatingAllExpensive(0);
-    getData(onChainData);
+    getCandidates(onChainData);
   }
 
-  async function getData(onChainData: any) {
+  async function getCandidates(onChainData: any) {
     const items = onChainData as unknown as [string[], string[] | number[]];
     if (items != undefined) {
-      const renderData = [...Array(items[0].length)].map((_: any, i: any) => [
-        utils.parseBytes32String(items[0][i] as BytesLike),
-        items[0][i] as BytesLike,
-        parseInt(items[1][i] as string),
-      ]);
-      setData(renderData);
+      const renderCandidates = [...Array(items[0].length)].map(
+        (_: any, i: any) => [
+          utils.parseBytes32String(items[0][i] as BytesLike),
+          items[0][i] as BytesLike,
+          parseInt(items[1][i] as string),
+        ]
+      );
+      setCandidates(renderCandidates);
       setLoaded(true);
     }
   }
@@ -230,6 +247,7 @@ export default function VotePage(props: Props): any {
       const solidityProof = Semaphore.packToSolidityProof(proof);
       const strIdentityCommitment = identityCommitment.toString();
       setLogs("On-chain verification and voting in progress...");
+
       const response = await fetch("/api/vote", {
         method: "POST",
         body: JSON.stringify({
@@ -242,8 +260,14 @@ export default function VotePage(props: Props): any {
       });
 
       if (response.status === 500) {
-        const errorMessage = await response.text();
-        setLogs(errorMessage);
+        // const errorMessage = await response.text();
+        const errorMessage = await response.json();
+        const err = JSON.parse(errorMessage.error.error.body);
+        setLogs(err.error.message);
+        if (errorMessage.length > 75) {
+          setLogs("Error: see console...");
+          console.log(errorMessage);
+        }
       } else {
         setSuccess(strIdentityCommitment);
         setLogs("Your anonymous vote is onchain :)");
@@ -254,105 +278,82 @@ export default function VotePage(props: Props): any {
     }
   }
 
-  //__________________________________________________
+  //
 
-  return (
-    <Layout>
-      <div className={styles.container}>
-        <div className={styles.logoutButton}>
-          <Link href="/api/logout">Logout</Link>
-        </div>
-        <main className={styles.main}>
-          <div className={styles.textfield}>
-            <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>Confirmation</DialogTitle>
-              <DialogContent>
-                <DialogContentText>Vote for {choice[0]}?</DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Confirm</Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-          <div className={styles.maindivdark}>
-            <div className={styles.fade}></div>
-            <Container
-              maxWidth="sm"
-              sx={{
-                borderRadius: "5px",
-                padding: "1%",
-                paddingTop: "8%",
-                paddingBottom: "8%",
-                backgroundColor: "#08118f56",
-                maxHeight: "75vh",
-                overflow: "auto",
-              }}
-            >
-              <Grid
-                container
-                rowSpacing={1}
-                columnSpacing={{ xs: 0, sm: 1, md: 3 }}
-              >
-                {Data ? (
-                  Data.map((uName: any, index: number) => (
-                    <Grid
-                      sx={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                      key={uName[0]}
-                      item
-                      xs={25}
-                      sm={4}
-                      md={4}
-                    >
-                      <div className={styles.divnames} key={uName[1]}>
-                        {uName[0]}
-                      </div>
-                      <div
-                        onClick={() => handleClickOpen(uName)}
-                        className={styles.button}
-                      >
-                        <GradeIcon
-                          sx={{ display: "inline", color: "#FFD700" }}
-                        ></GradeIcon>
-                        <div className={styles.buttonTxt}>{uName[2]}</div>
-                      </div>
-                    </Grid>
-                  ))
-                ) : (
-                  <div style={{ marginLeft: "20%" }}>
-                    <p>Loading...</p>
-                  </div>
-                )}
-              </Grid>
-            </Container>
-          </div>
-
-          <div className={styles.logs}>{logs}</div>
-          {/* <div onClick={() => emptyLeaves()} className={styles.button}>
-          emptyLeaves
-        </div> */}
-        </main>
-      </div>
-    </Layout>
-  );
-}
-
-export const getServerSideProps: any = async function (
-  ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-) {
-  const user = parseUser(ctx);
-
-  if (!user) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
+  if (arr[1]) {
+    setExpanded("panel2");
+    const newArr = [...arr];
+    newArr[1] = false;
+    setArr(newArr);
   }
 
-  return { props: { user } };
-};
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+
+  // console.log({ candidates });
+  return (
+    <div>
+      <Accordion
+        expanded={expanded === "panel1"}
+        onChange={handleChange("panel1")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>Step 1.</Typography>
+          <div>
+            <Typography sx={{ color: "text.secondary" }}>{arr[0]}</Typography>
+          </div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <CheckboxList setArrFunc={setArr} />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel2"}
+        onChange={handleChange("panel2")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>Step 2.</Typography>
+          <Typography sx={{ color: "text.secondary" }}>
+            Choose a candidate
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <SortedList
+            userId={userId}
+            arr={arr}
+            candidates={candidates}
+            giveVote={giveVote}
+          />
+        </AccordionDetails>
+      </Accordion>
+      {/* <ConsecutiveSnackbars logs ={logs} /> */}
+      <Alert
+        sx={{
+          // display:"flex",
+          zIndex: "1204",
+          position: "fixed",
+          marginLeft: "auto",
+          marginRight: "auto",
+          left: 0,
+          right: 0,
+          bottom: "10px",
+          width: "40%",
+        }}
+        variant="filled"
+        severity="info"
+      >
+        {logs}
+      </Alert>
+    </div>
+  );
+}

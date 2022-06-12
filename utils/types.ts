@@ -14,3 +14,7 @@ export interface DiscordUser {
     username: string
   }
 }
+
+export interface Props {
+  user: DiscordUser | boolean;
+}
