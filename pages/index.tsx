@@ -27,9 +27,11 @@ export default function Home() {
     ) {
       setUserState(JSON.parse(localStorage.getItem("user")!));
     }
-    if (page !== localStorage.getItem("page")) {
-      setPage(localStorage.getItem("page")!);
-    }
+    console.log({page})
+    console.log(localStorage.getItem("page"))
+    // if (page !== localStorage.getItem("page")) {
+    //   setPage(localStorage.getItem("page")!);
+    // }
     // console.log({ localStorage });
   },[discordUser, userState, page, setPage]);
 
