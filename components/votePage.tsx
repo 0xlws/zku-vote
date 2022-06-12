@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 
 // console.log(SortedList)
 
-const VotePage = ({ props }: any) => {
+const VotePage = () => {
+// const VotePage = ({ props }: any) => {
   const { data, setData } = useContext(UserContext);
   const router = useRouter();
 
@@ -24,7 +25,8 @@ const VotePage = ({ props }: any) => {
 
   return (
     <>
-      <LoginButton props={props} />
+      <LoginButton />
+      {/* <LoginButton props={props} /> */}
       <ControlledAccordion userId={userId} roles={roles} />
     </>
   );

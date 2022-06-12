@@ -41,9 +41,10 @@ export default function Home() {
 
   return (
     <>
-      {page == "0" && <VotePage props={props} />}
-      {/* {page == "1" && <ProposalsPage props={props} />} */}
+      {page == "0" && <VotePage />}
       {page == "1" && <ProposalsPage />}
+      {/* {page == "0" && <VotePage props={props} />} */}
+      {/* {page == "1" && <ProposalsPage props={props} />} */}
     </>
   );
 }
