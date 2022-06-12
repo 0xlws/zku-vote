@@ -11,7 +11,7 @@ export const LoginButton = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.setItem("user", JSON.stringify(false));
+    localStorage.removeItem("user");
 
     router.push("/api/logout");
   };

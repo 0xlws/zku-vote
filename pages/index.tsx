@@ -11,10 +11,11 @@ export default function Home(props: any) {
 // export default function Home() {
   // let props = { discordUser: false };
   const { page, setPage } = useContext(PageContext);
-  // const [userState, setUserState] = useState<any>(props);
-  let discordUser: any;
+  const [userState, setUserState] = useState<any>(props);
+  // let discordUser: any;
   console.log({props})
-  console.log(Object.values(props).length === 0)
+  let LoggedIn = Object.values(userState).length !== 0
+  console.log({LoggedIn})
   // if (props.discordUser !== false) {
   //   discordUser = props;
   // }
@@ -30,13 +31,17 @@ export default function Home(props: any) {
 
       }
     }
-    // console.log(localStorage.getItem("user"))
-    if (discordUser) {
-      localStorage.setItem("user", JSON.stringify(discordUser));
+    console.log([localStorage][0])
+    if (localStorage.getItem("user") !== null){
+
     }
-    if (JSON.stringify(discordUser) !== localStorage.getItem("user")) {
+
+    // if (!LoggedIn) {
+    //   localStorage.setItem("user", JSON.stringify(discordUser));
+    // }
+    // if (JSON.stringify(discordUser) !== localStorage.getItem("user")) {
       // setUserState(JSON.parse(localStorage.getItem("user")!));
-    }
+    // }
     // console.log({ localStorage });
   },[]);
 
