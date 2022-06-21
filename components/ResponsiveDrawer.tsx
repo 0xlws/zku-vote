@@ -11,9 +11,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Tooltip from "@mui/material/Tooltip";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
-import PollIcon from "@mui/icons-material/Poll";
-import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
+// import PollIcon from "@mui/icons-material/Poll";
+// import QueryStatsIcon from "@mui/icons-material/QueryStats";
+// import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import { PageContext } from "../contexts/PageContext";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -25,16 +25,17 @@ const pages = [
   { name: "Students", icon: <ThumbUpIcon />, page: "0" },
   { name: "Proposals", icon: <HowToVoteIcon />, page: "1" },
 ];
-const pages2 = [
-  { name: "Statistics", icon: <PollIcon />, page: "" },
-  { name: "Data", icon: <QueryStatsIcon />, page: "" },
-  { name: "Gas", icon: <LocalGasStationIcon />, page: "" },
-];
+// const pages2 = [
+//   { name: "Statistics", icon: <PollIcon />, page: "" },
+//   { name: "Data", icon: <QueryStatsIcon />, page: "" },
+//   { name: "Gas", icon: <LocalGasStationIcon />, page: "" },
+// ];
+
 const empty = [{ name: "", icon: "", page: "" }];
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { page, setPage } = useContext(PageContext);
+  const { setPage } = useContext(PageContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

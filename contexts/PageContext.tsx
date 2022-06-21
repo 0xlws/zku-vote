@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { DiscordUser, Props } from "../utils/types"
 
 
 const contextDefaultValues = {

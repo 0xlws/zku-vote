@@ -1,5 +1,5 @@
-import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
-import { poseidon } from "circomlibjs";
+// import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
+// import { poseidon } from "circomlibjs";
 import { Contract } from "ethers";
 import { task, types } from "hardhat/config";
 // import identityCommitments from "../public/identityCommitments.json";

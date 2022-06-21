@@ -18,7 +18,6 @@ export default function DrawerRight(props: {
   open: boolean | undefined;
   proposal: any;
 }) {
-  const [state, setState] = React.useState(false);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -29,8 +28,6 @@ export default function DrawerRight(props: {
       ) {
         return;
       }
-
-      setState(open);
       props.handleOpenFunc();
     };
 
@@ -56,14 +53,11 @@ export default function DrawerRight(props: {
     <>
       <div>
         <React.Fragment>
-          {/* <Button onClick={toggleDrawer(true)}>{"OPEN"}</Button> */}
-          {/* <Button onClick={toggleDrawer(true)}>{"OPEN"}</Button> */}
           <Drawer
             anchor="right"
             sx={{
               width: { xs: "100vw", sm: "28rem" },
             }}
-            // open={state}
             open={props.open}
             onClose={toggleDrawer(false)}
           >
@@ -77,7 +71,6 @@ export default function DrawerRight(props: {
                 height: "100%",
               }}
               role="presentation"
-              // onClick={toggleDrawer(false)}
               onKeyDown={toggleDrawer(false)}
             >
               {props.open ? (
@@ -97,8 +90,6 @@ export default function DrawerRight(props: {
                       position: "relative",
                       display: "flex",
                       top: 0,
-                      // fontSize: "2rem",
-                      // textAlign: "center",
                       justifyContent: "center",
                       backgroundColor: "white",
                       borderRadius: "inherit",
@@ -113,74 +104,9 @@ export default function DrawerRight(props: {
                       <CloseIcon />
                     </IconButton>
                   </div>
-                  {/* <div
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  top: 0,
-                  // fontSize: "2rem",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  borderRadius: "inherit",
-                }}
-              >
-                <Grid
-                  container
-                  sx={{
-                    display: "flex",
-                  }}
-                >
-                  <Grid
-                    item
-                    sm={6}
-                    sx={{
-                      minWidth: "50%",
-                    }}
-                  >
-                    Name: Test
-                  </Grid>
-                  <Grid
-                    item
-                    sm={1}
-                    sx={{
-                      minWidth: "50%",
-                    }}
-                  >
-                    Title
-                  </Grid>
-                  <Grid
-                    item
-                    sm={1}
-                    sx={{
-                      minWidth: "50%",
-                    }}
-                  ></Grid>
-                  <Grid
-                    item
-                    sm={1}
-                    sx={{
-                      minWidth: "50%",
-                    }}
-                  ></Grid>
-                </Grid>
-              </div> */}
 
-                  {/* <Typography
-                sx={{
-                  top: 0,
-                  fontSize: "2rem",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  borderRadius: "inherit",
-                }}
-                color="text.primary"
-                gutterBottom
-              >
-                Title
-              </Typography> */}
                   <div
                     style={{
-                      // position:"absolute",
                       backgroundColor: "white",
                       display: "flex",
                       flexDirection: "column",
@@ -219,22 +145,13 @@ export default function DrawerRight(props: {
 
                   <div
                     style={{
-                      // width:"80%",
-                      // display: "flex",
                       display: "flex",
-                      // marginLeft: "0",
-                      // marginRight: "auto",
                       marginTop: "8px",
                       borderRadius: "3px",
                       backgroundColor: "white",
                       flexDirection: "column",
-
-                      // justifyContent: "flex-start",
-
-                      // justifyContent: "space-around",
                     }}
                   >
-                    {/* <CardActions> */}
                     <IconButton
                       onClick={() => handleWebsite(props.proposal[4].website)}
                       sx={{
@@ -264,8 +181,6 @@ export default function DrawerRight(props: {
                     >
                       <GitHubIcon />: Source Code
                     </IconButton>
-                    {/* <Button size="small">Learn More</Button> */}
-                    {/* </CardActions> */}
                   </div>
 
                   <Tooltip title="Approve proposal" arrow>

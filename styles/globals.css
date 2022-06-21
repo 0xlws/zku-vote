@@ -11,16 +11,6 @@ body {
   font-family: montserrat;
   background-color: #dddddd;
   -webkit-font-smoothing: antialiased;
-  /* position: fixed; */
-  /* background-color: #1F3D5A; */
-  /* background-color: dodgerblue; */
-  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif; */
-  /* font-family:monteserrat, sans-serif; */
-  /* font-size: 1.5rem; */
-  /* font-weight: 1000; */
-  /* overflow: hidden;  */
-  /* transition: all 20s ease-out; */
 }
 
 a {
@@ -37,5 +27,4 @@ a:active {
 
 * {
   box-sizing: inherit;
-  /* box-sizing: border-box; */
 }

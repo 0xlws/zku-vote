@@ -11,13 +11,13 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [opacity, setOpacity] = React.useState(0);
-  const { data, setData } = useContext(UserContext);
+  const { data } = useContext(UserContext);
 
   useEffect(() => {
     setTimeout(() => {
       setOpacity(1);
     }, 500);
-  },[]);
+  }, []);
 
   return (
     <>
