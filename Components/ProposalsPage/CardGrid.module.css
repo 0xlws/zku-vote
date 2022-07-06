@@ -1,0 +1,41 @@
+.Card {
+  transition: 0.08s ease-out;
+  filter: brightness(95%);
+}
+
+.Card:hover {
+  filter: brightness(100%);
+  transform: scale(1.02);
+}
+
+@media screen and (max-width: 420px) {
+  .Card {
+    transform: scale(0.9);
+  }
+
+  .Card:hover {
+    transform: scale(0.92);
+  }
+
+  .Typography {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .Card {
+    transform: scale(0.8);
+  }
+  .Card:hover {
+    transform: scale(0.82);
+  }
+}
+
+@media screen and (max-width: 325px) {
+  .Card {
+    transform: scale(0.7);
+  }
+  .Card:hover {
+    transform: scale(0.72);
+  }
+}
