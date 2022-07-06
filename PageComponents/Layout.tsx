@@ -1,5 +1,5 @@
-import * as React from "React"
-import { useState, useEffect, ReactNode} from "react";
+import * as React from "react";
+import { useState, useEffect, ReactNode } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Button from "@mui/material/Button";
@@ -7,7 +7,6 @@ import Tooltip from "@mui/material/Tooltip";
 import styles from "../styles/Home.module.css";
 import ResponsiveDrawer from "../Components/Layout/ResponsiveDrawer";
 import { LoginButton } from "../Components/Layout/LoginButton";
-
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [opacity, setOpacity] = useState(0);
@@ -64,55 +63,54 @@ export default function Layout({ children }: { children: ReactNode }) {
                 transform: "scale(1.5)",
               }}
             ></span>
-              <>
-                <span className={styles.logo}>
-                  <Image
-                    src="/zkulogo.png"
-                    blurDataURL="/zkulogo.png"
-                    alt="ZKU_logo"
-                    width={48}
-                    height={36}
-                    placeholder="blur"
-                  />
-                  <Tooltip
+            <>
+              <span className={styles.logo}>
+                <Image
+                  src="/zkulogo.png"
+                  blurDataURL="/zkulogo.png"
+                  alt="ZKU_logo"
+                  width={48}
+                  height={36}
+                  placeholder="blur"
+                />
+                <Tooltip
+                  sx={{
+                    zIndex: "12",
+                    position: "absolute",
+                    left: "-100px",
+                    color: "rgba(0,0,0,0)",
+                  }}
+                  title="ZKU Logo by Tosin Shada"
+                  placement="bottom"
+                  arrow
+                >
+                  <Button
                     sx={{
-                      zIndex: "12",
+                      left: "-250%",
+                      right: "0",
+                      opacity: "0",
                       position: "absolute",
-                      left: "-100px",
-                      color: "rgba(0,0,0,0)",
-                    }}
-                    title="ZKU Logo by Tosin Shada"
-                    placement="bottom"
-                    arrow
-                  >
-                    <Button
-                      sx={{
-                        left: "-250%",
-                        right: "0",
-                        opacity: "0",
-                        position: "absolute",
+                      backgroundColor: "rgba(0, 0, 0, 0)",
+                      "&:hover": {
                         backgroundColor: "rgba(0, 0, 0, 0)",
-                        "&:hover": {
-                          backgroundColor: "rgba(0, 0, 0, 0)",
-                        },
-                      }}
-                    >
-                      QWERTYUIOPASDFGHJKLZXCVBNM
-                    </Button>
-                  </Tooltip>
-                </span>
-                <span className={styles.bannerText}>
-                  <h1>vote</h1>
-                </span>
-              </>
-            
+                      },
+                    }}
+                  >
+                    QWERTYUIOPASDFGHJKLZXCVBNM
+                  </Button>
+                </Tooltip>
+              </span>
+              <span className={styles.bannerText}>
+                <h1>vote</h1>
+              </span>
+            </>
           </div>
         </div>
 
         {/* <MiniDrawer/> */}
 
         <ResponsiveDrawer />
-        <LoginButton/>
+        <LoginButton />
         <main className={styles.main}>{children}</main>
       </div>
     </>
