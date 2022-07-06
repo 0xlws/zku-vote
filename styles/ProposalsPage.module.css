@@ -1,0 +1,17 @@
+.progress {
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+
+.fadePage {
+  z-index: 7;
+  position: absolute;
+
+  background-color: #d9d9d9;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: all 10s ease-out;
+  overflow: clip;
+}
