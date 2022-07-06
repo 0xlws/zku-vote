@@ -1,0 +1,67 @@
+.main {
+  min-height: 100vh;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin-left: 4rem;
+  margin-top: 4rem;
+}
+
+.contactsContainer {
+  margin-top: -110px;
+}
+
+.progress {
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+
+.CardHeaderContainer {
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: fit-content;
+  margin-top: 0.25rem;
+  box-shadow: 0px 0px 2px #ddd, 1px 1px 2px #bbb;
+  transform: scale(1);
+  background-color: white;
+  filter: brightness(95%);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.CardHeader {
+  width: 14rem;
+  z-index: 0;
+}
+
+.CardHeaderContainer:hover,
+.CardHeaderContainer2:hover {
+  box-shadow: 4px 4px 10px #999, 0 0 10px #bbb;
+  transform: scale(1.02);
+  filter: brightness(100%);
+}
+
+.Avatar {
+  z-index: 1;
+  padding: 0.2rem;
+  border-radius: 50%;
+}
+
+.letterDividerContainer {
+  text-align: center;
+  color: black;
+}
+
+@media screen and (max-width: 849px) {
+  .main {
+    margin-left: 0;
+  }
+}

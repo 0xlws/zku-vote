@@ -1,25 +1,25 @@
 import * as React from "react";
-import "../styles/globals.css";
-import Layout from "../components/Layout";
-import theme from "../styles/theme";
-import { ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { UserContext } from "../contexts/UserContext";
-import { PageContext } from "../contexts/PageContext";
+import Layout from "../PageComponents/Layout";
+import { PageContext } from "../Contexts/PageContext";
+import { LoginContext } from "../Contexts/LoginContext";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../styles/theme";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: any) {
-  const [data, setData] = useState({});
+  const [LoggedIn, setLoggedIn] = useState<any>(false);
   const [page, setPage] = useState<any>(null);
 
   return (
     <ThemeProvider theme={theme}>
-      <UserContext.Provider value={{ data, setData }}>
+      <LoginContext.Provider value={{ LoggedIn, setLoggedIn }}>
         <PageContext.Provider value={{ page, setPage }}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </PageContext.Provider>
-      </UserContext.Provider>
+      </LoginContext.Provider>
     </ThemeProvider>
   );
 }

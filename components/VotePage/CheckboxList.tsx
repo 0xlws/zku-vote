@@ -11,14 +11,10 @@ const options = [
   // "*Some other campaign*"
 ];
 
-export default function CheckboxList(props: {
-  setArrFunc: (arg0: (string | boolean)[]) => void;
-}) {
-  const [checked, setChecked] = React.useState<number>(-1);
-
+export default function CheckboxList({ setArr, checked, setChecked }: any) {
   const handleToggle = (value: string, index: number) => {
     setChecked(index);
-    props.setArrFunc([value, true]);
+    setArr([value, true]);
   };
 
   return (

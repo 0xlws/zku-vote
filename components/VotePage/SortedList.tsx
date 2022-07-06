@@ -2,26 +2,19 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import CardHeader from "@mui/material/CardHeader";
 import Divider from "@mui/material/Divider";
-import styles from "../styles/Home.module.css";
+import styles from "./SortedList.module.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ConfirmationDialogRaw } from "./ConfirmationDialogRaw";
-// import { NameList } from "../components/Constants"
 
 let opacity = 1;
-
-// const options = ["0"];
-
 let nameList = ["An", "error", "occurred"];
 
 const SortedList = ({ userId, candidates, arr, giveVote }: any) => {
-  // const [value, setValue] = React.useState("None selected");
   const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const { data, setData } = useContext(UserContext);
   let Candidates = [];
   if (candidates !== undefined) {
     Candidates = candidates.map((names: any[]) => names[0]);
@@ -130,10 +123,6 @@ const SortedList = ({ userId, candidates, arr, giveVote }: any) => {
 
   const handleClose = (newValue?: string) => {
     setOpen(false);
-
-    if (newValue) {
-      setData({ ...data, candidate: newValue });
-    }
   };
 
   return (

@@ -25,8 +25,12 @@
     "./pages/**/*.ts",
     "./pages/**/*.tsx",
     "./test",
-    "./tasks"
-, "pages/index copy._", "styles/theme.tsx", "components/votePage.tsx", "components/proposalsPage.tsx"  ],
+    "./tasks",
+    "styles/theme.tsx", 
+    "PageComponents/VotePage.tsx",
+    "PageComponents/ProposalsPage.tsx",
+    "PageComponents/Layout.tsx"
+  ],
   "files": ["./hardhat.config.ts"],
   "exclude": ["node_modules"],
   "ts-node": {

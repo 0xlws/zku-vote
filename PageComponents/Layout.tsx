@@ -1,17 +1,16 @@
+import * as React from "React"
+import { useState, useEffect, ReactNode} from "react";
 import Head from "next/head";
-import React, { useEffect } from "react";
-import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import ResponsiveDrawer from "./ResponsiveDrawer";
+import styles from "../styles/Home.module.css";
+import ResponsiveDrawer from "../Components/Layout/ResponsiveDrawer";
+import { LoginButton } from "../Components/Layout/LoginButton";
 
-import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const [opacity, setOpacity] = React.useState(0);
-  const { data } = useContext(UserContext);
+export default function Layout({ children }: { children: ReactNode }) {
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}
         >
           <div
-            className={styles.logodiv}
+            className={styles.logoContainer}
             style={{
               opacity: `${opacity}`,
             }}
@@ -65,10 +64,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 transform: "scale(1.5)",
               }}
             ></span>
-
-            {data.candidate ? (
-              `DEBUG: Voted for ${data.candidate} `
-            ) : (
               <>
                 <span className={styles.logo}>
                   <Image
@@ -106,18 +101,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </Button>
                   </Tooltip>
                 </span>
-                <span className={styles.bannertext1}>
+                <span className={styles.bannerText}>
                   <h1>vote</h1>
                 </span>
               </>
-            )}
+            
           </div>
         </div>
 
         {/* <MiniDrawer/> */}
 
         <ResponsiveDrawer />
-
+        <LoginButton/>
         <main className={styles.main}>{children}</main>
       </div>
     </>

@@ -14,20 +14,15 @@ import Rating from "@mui/material/Rating";
 import Tooltip from "@mui/material/Tooltip";
 import SpeedDial from "@mui/material/SpeedDial";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import styles from "../styles/proposalsPage.module.css";
-import RightDrawer from "../components/RightDrawer";
+import styles from "./CardGrid.module.css";
 
 const LightDivider = styled(Divider)({
   opacity: 0.3,
 });
 
-let user = {};
-
-export default function CardGrid({ props, Data, userId, giveVote, open, setOpen }: any) {
-  // const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+export default function CardGrid({ setUser, Data, open, handleOpen }: any) {
   const handleClick = (proposal: any) => {
-    user = proposal;
+    setUser(proposal);
     handleOpen();
   };
 
@@ -196,13 +191,6 @@ export default function CardGrid({ props, Data, userId, giveVote, open, setOpen 
           </Grid>
         ))}
       </Grid>
-      <RightDrawer
-        handleOpenFunc={handleOpen}
-        open={open}
-        proposal={user}
-        userId={userId}
-        giveVote={giveVote}
-      />
     </>
   );
 }

@@ -12,13 +12,12 @@ import Tooltip from "@mui/material/Tooltip";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function DrawerRight(props: {
-  handleOpenFunc: () => void;
+  handleOpen: () => void;
   userId: string;
   giveVote: (arg0: any) => any;
   open: boolean | undefined;
   proposal: any;
 }) {
-
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -28,7 +27,7 @@ export default function DrawerRight(props: {
       ) {
         return;
       }
-      props.handleOpenFunc();
+      props.handleOpen();
     };
 
   const approve = (proposal: any) => {

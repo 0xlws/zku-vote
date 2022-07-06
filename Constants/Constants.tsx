@@ -49,7 +49,6 @@ export const contract = VoterContract.connect(signer);
 //   signer
 // );
 
-
 // export const NameList = [
 //   "Virginia Howard",
 //   "Liz Faulkner",

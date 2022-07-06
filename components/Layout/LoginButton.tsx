@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
+import { LoginContext } from "../../Contexts/LoginContext";
 
-export const LoginButton = ({ props }: any) => {
-  let LoggedIn = Object.values(props).length !== 0;
-
+export const LoginButton = () => {
+  const { LoggedIn } = useContext(LoginContext);
   const router = useRouter();
 
   const handleLogout = () => {

@@ -5,35 +5,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import SortedList from "./SortedList";
-import CheckboxList from "./CheckboxList";
-
-import { useState } from "react";
-
-//
-
-
-
 export default function ControlledAccordions({
-  props,
-  userId,
-  giveVote,
-  candidates,
+  children,
+  arr,
+  expanded,
+  setExpanded,
 }: any) {
-
-  const [expanded, setExpanded] = useState<string | false>("panel1");
-  const [arr, setArr] = useState<(string | boolean)[]>([
-    "Choose a campaign",
-    false,
-  ]);
-
-  if (arr[1]) {
-    setExpanded("panel2");
-    const newArr = [...arr];
-    newArr[1] = false;
-    setArr(newArr);
-  }
-
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
@@ -55,9 +32,7 @@ export default function ControlledAccordions({
             <Typography sx={{ color: "text.secondary" }}>{arr[0]}</Typography>
           </div>
         </AccordionSummary>
-        <AccordionDetails>
-          <CheckboxList setArrFunc={setArr} />
-        </AccordionDetails>
+        <AccordionDetails>{children[0]}</AccordionDetails>
       </Accordion>
       <Accordion
         expanded={expanded === "panel2"}
@@ -73,14 +48,7 @@ export default function ControlledAccordions({
             Choose a candidate
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <SortedList
-            userId={userId}
-            arr={arr}
-            candidates={candidates}
-            giveVote={giveVote}
-          />
-        </AccordionDetails>
+        <AccordionDetails>{children[1]}</AccordionDetails>
       </Accordion>
     </div>
   );
